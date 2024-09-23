@@ -1,0 +1,90 @@
+# Primer Parcial - 2024
+
+### Parte #01
+
+Crear un sitio WEB en el puerto 3333 que contemple los siguientes puntos:
+
+La tematica de la API sera a eleccion, pero en cada punto se dara un ejemplo.
+
+- [ ]  Un menú de por ejemplo proyectos que contenga como minimo 5 secciones ej: (”Mobile”, “LandingPage”, “Web App”, “e-Commerce”, “Games”)
+    - [ ]  Al hacer clic en una sección debe redireccionarlo a una pagina donde se vean solo por ej los proyectos que pertenecen a esa sección.
+    - [ ]  Por cada proyecto o lo que corresponda se visualizarán por ej los siguientes datos:
+        - Nombre del proyecto
+        - Descripción
+        - Tecnologías
+        - Link al repositorio
+        - Una imagen del proyecto (preview)
+        
+        Como minimo debe tener 5 datos, uno debe ser un link y otro una imagen, los demas segun corresponda a su tematica
+        
+- [ ]  Los datos se deben obtener de una base de datos llamada **“AH20232CP1”** la cual tiene una colección llamada “**Projects” o lo que corresponda dependiendo de su tematica.**
+- [ ]  La estructura de cada documento podria ser la siguiente:
+    
+    Debe tener un ID y los campos que se utilizaron anteriormente
+    
+
+```json
+{
+	"_id": ObjectID(),
+	"name": "Nombre del proyecto",
+	"description": "Descripcion del proyecto",
+	"link": "http://miweb.com/proyecto",
+	"img": "https://picsum.photos/400/225",
+	"technologies": ["PHP", "Vue", "Laravel"]
+	"section": "mobile"
+}
+```
+
+### Parte #02
+
+Crear un API que me permita hacer lo siguiente:
+
+- [ ]  Traer todos los proyectos o lo que corresponda
+    - [ ]  Me debe permitir filtrar por dos campos
+- [ ]  Modificar un proyecto( o lo que corresponda )
+- [ ]  Eliminar un proyecto( o lo que corresponda )
+- [ ]  Crear un proyecto( o lo que corresponda )
+
+### Parte #03
+
+- [ ]  Agregar una nueva entidad llamada “Cliente” que contenga los siguientes datos:
+    
+    La idea de esta nueva entidad es que consuma nuestro servicio puede ser cliente o cualquier otra entidad mientras como minimo contenga:
+    
+    - Nombre
+    - Foto
+    - Descripción
+- [ ]  Modelar la base de datos para que soporte este nuevo cambio teniendo en cuenta las siguientes aclaraciones:
+    - Un cliente puede tener o no proyectos realizados para el. ( Quien consuma nuestra API debe poder tener o no proyectos o lo que corresponda )
+    - Un proyecto es creado para un cliente en particular. ( Quien consuma nuestra API debe poder crear proyectos o lo que corresponda )
+- [ ]  Agregar una entrada al API para poder crear un cliente (o la entidad que corresponda)
+- [ ]  Agregar una entrada al API para poder obtener todos los clientes (o la entidad que corresponda)
+- [ ]  Agregar una entrada al API para poder obtener todos los proyectos que pertenecen a un cliente particular o la entidad que corresponda
+
+## Aclaraciones:
+
+- Las secciones pueden ser por ejemplo:
+    
+    
+    | Seccion | Slug |
+    | --- | --- |
+    | Mobile | mobile |
+    | LandingPage | landing |
+    | Web App | webapp |
+    | e-Commerce | ecommerce |
+    | Games | game |
+- Pueden realizar todas las modificaciones necesarias en la base de datos para modelar los cambios.
+- Se deben asegurar que los campos enviados desde el cliente sean los que necesite el sistema.
+- Se evaluara:
+    - [ ]  Modelado de base de datos
+    - [ ]  API (manejo correcto de las 4 reglas basicas)
+    - [ ]  División de Responsabilidades (manejo correcto de views, controllers, service, api y route)
+    - [ ]  Correcto uso del Driver nativo de MongoDB
+    - [ ]  Correcto uso de **ECMAScript** modules
+    - [ ]  Correcta creación de paginas dinámicas
+    - [ ]  Correcto uso de Express
+- Para las imágenes pueden utilizar https://picsum.photos que es un generador de imágenes aleatoria.
+- No es necesario que envíen la base de datos
+- El código debe estar en github (envian solo el link al repositorio) o compartido en google drive (por favor no comprimirlo)
+
+# RECUERDEN NO COPIAR EL CODIGO REALIZADO EN CLASE, INTENTEN HACERLO DESDE CERO
