@@ -1,12 +1,118 @@
-//cafe.controller.js
+import * as cafeService from "../services/cafes.service.js"
+import * as cafeView from "../views/cafes.view.js"
 
-import * as cafeService from "../services/cafes.service.js";
-import * as cafeView from "../views/cafe.view.js";
-
-const getCafes = (req, res) => {
+//*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+// *-*-*-*-*-* Detalle del producto *-*-*-*-*-*
+//*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+const getCafes = (req, res)=>{
     cafeService.getCafes()
         .then(productos => {
             res.send(cafeView.crearPagina("Listado de cafes", cafeView.crearListadoCafes(productos)))
         })
 }
-export { getCafes };
+
+const getCafeId = (req, res) => {
+    cafeService.getCafeId(req.params.id)
+        .then( cafe => res.send( cafeView.crearPagina("detalle del producto", cafeView.crearDetalleCafe(cafe)) ) )
+}
+
+
+//*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+//*-*-*-* Nuevo cafe *-*-*-*-*-*
+//*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+const crearNuevoCafe = (req, res) => {
+    res.send( cafeView.crearPagina("Cargar un nuevo café", cafeView.crearNuevoCafe() ) )
+}
+
+//---- Muestra el cafe cargado en la base de datos ---- 
+const agregarCafe = (req, res) => {
+    cafeService.agregarCafe(req.body)       
+    .then( ( cafe ) => res.send( cafeView.crearPagina("Nuevo café ", `      
+      <div class="container mt-5 ">
+         <h2 class='text-center'>Se agregó el café con exito! </h2>
+         <div class="card w-50 m-auto bg-dark text-light border border-none">
+             <div class="card-body bg-dark text-light">
+             <ul>
+                <li class="tablaAgregado">ID: ${cafe.id}</li>
+                <li class="tablaAgregado">Nombre: ${cafe.nombre}</li>
+                <li class="tablaAgregado">Descripción: ${cafe.descripcion}</li>
+                <li class="tablaAgregado">Preparado: ${cafe.preparado}</li>
+                <li class="tablaAgregado">Tamaño: ${cafe.tamano}</li>
+                <li class="tablaAgregado">imagen: ${cafe.img}</li>
+                <li class="tablaAgregado">Precio: ${cafe.precio}</li>
+             </ul>
+                <div>
+                    <a class='btnMenu' href='/cafes' >Volver</a>
+                </div>
+             </div>
+         </div>
+     </div>
+        `  ) ) )
+    .catch( (err) => res.send(cafeView.crearPagina("Error Al agregar un café", `<p>${err}</p>`)) )
+}
+
+
+//*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+//*-*-*-*-* modificar cafe *-*-*-*-*-*
+//*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+const modificarCafeForm = (req, res) => {
+    const idCafe = req.params.id
+    cafeService.getCafeId(idCafe)
+        //.then( cafe => res.send( cafeView.crearPagina("Modificar cafe", cafeView.modificarForm(cafe) ) ) )
+          .then( cafe => res.send( cafeView.crearPagina("Editar un producto", cafeView.modificarForm(cafe) ) ) )
+        //.catch( (err) => res.send(cafeView.crearPagina("Error Al modificar una cafe", `<p>${err}</p>`)) )
+}
+
+export const modificarCafe = (req, res) => {
+    const idCafe = req.params.id
+    cafeService.modificarCafe(idCafe, req.body)
+        .then( ( cafe ) => res.send( cafeView.crearPagina("Editar un Producto ", `      
+            <div class="container mt-5 ">
+               <h2 class='text-center'>Se editó el café con exito! </h2>
+               <div class="card w-50 m-auto bg-dark text-light border border-none">
+                   <div class="card-body bg-dark text-light">
+                   <ul>
+                      <li class="tablaEditado">ID: ${cafe.id}</li>
+                      <li class="tablaEditado">Nombre: ${cafe.nombre}</li>
+                      <li class="tablaEditado">Descripción: ${cafe.descripcion}</li>
+                      <li class="tablaEditado">Preparado: ${cafe.preparado}</li>
+                      <li class="tablaEditado">Tamaño: ${cafe.tamano}</li>
+                      <li class="tablaEditado">imagen: ${cafe.img}</li>
+                      <li class="tablaEditado">Precio: ${cafe.precio}</li>
+                   </ul>
+                      <div>
+                          <a class='btnMenu' href='/cafes' >Volver</a>
+                      </div>
+                   </div>
+               </div>
+           </div>
+             `  ) ) )
+         .catch( (err) => res.send(cafeView.crearPagina("Error al editar un café", `<p>${err}</p>`)) )
+}
+
+
+//*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+//*-*-*-*-* eliminar cafe *-*-*-*-*-*
+//*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+const eliminarCafeForm = (req, res) => {
+    const idCafe = req.params.id
+    cafeService.getCafeId(idCafe)
+        .then( cafe => res.send( cafeView.crearPagina("Eliminar un cafe", cafeView.eliminarForm(cafe) ) ) )
+        .catch( (err) => res.send(cafeView.crearPagina("Error Al eliminar una cafe", `<p>${err}</p>`)) )
+}
+
+export const eliminarCafe = (req, res) => {
+    const idCafe = req.params.id
+    cafeService.eliminarCafe(idCafe, req.body)
+        .then( () => res.redirect("/cafes") )
+}
+
+export {
+    getCafeId,
+    getCafes,
+    crearNuevoCafe,
+    agregarCafe,
+    modificarCafeForm,
+    eliminarCafeForm
+
+}

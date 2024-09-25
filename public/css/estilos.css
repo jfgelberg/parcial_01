@@ -87,7 +87,7 @@ h1 {
 }
 h2 {
     font-size: 3.6rem;
-    color: #5E311E;
+    color: #C39C63;
 
     span {
          color: #C39C63;
@@ -350,6 +350,34 @@ h3 {
     }
 }
 
+.btnMenu, .btnEliminar{
+    background-color: #C39C63;
+    color: #ffffff;
+    padding: 1rem 0;
+    border-radius: .5rem;
+    font-size: 1.5rem;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 2rem 0 ;
+    display: inline-block;
+    width: 30%;
+    transition: all .5s ease;
+    &:hover {
+        background-color: #5E311E;
+    }
+}
+.btnMenu:hover{
+    color: #C39C63;
+}
+.btnEliminar{
+    background-color: #f71010;
+    &:hover {
+        background-color: #5E311E;
+    }
+}
+
+
 /*Sección de reseñas */
 .nuestros-testimoniales {
     padding: 10rem 2rem;
@@ -357,7 +385,7 @@ h3 {
     .testimonial {
         background-color: #ebe7de;
         padding: 2rem 4rem;
-        max-width: 50rem;
+        max-width: 90%;
         margin: 0 auto;
         border-radius: 1rem;
 
@@ -368,6 +396,25 @@ h3 {
             font-family: 'Bona Nova', serif;
         }
     }
+}
+
+.altoCard{
+    height: 250px;
+    border-radius: 2rem;
+}
+
+.imgClientes{
+    max-width:  100px;
+    max-height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 1rem;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+
+}
+.comentarioCliente{
+    border-bottom: 1px solid #C39C63;
+    margin: 1rem 0;
 }
 
 
@@ -413,4 +460,35 @@ h3 {
         margin: 0;
     }
 
+}
+
+.tablaAgregado{
+    border-bottom: 1px solid #C39C63;
+    padding: 1rem 0;
+}
+.tablaEditado{
+    border-bottom: 1px solid #fdd292;
+    padding: 1rem 0;
+}
+.tablaEliminado{
+    border-bottom: 1px solid #f71010;
+    padding: 1rem 0;
+}
+
+.borrar{
+    border-radius: 50%;
+    max-width:  30px;
+    
+}
+.btnCard{
+    width: 80px;
+}
+.mt-auto {
+    margin-top: auto; /* Empuja los botones hacia el pie del card */
+}
+
+.FormatoTabla{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,0 +1,75 @@
+[
+  {
+    "id": "1",
+    "nombre": "Carlos López",
+    "resena": "El ambiente es muy acogedor y el café tiene un sabor excelente. Sin duda, volveré.",
+    "img": "clientes_03.png"
+  },
+  {
+    "id": 2,
+    "nombre": "Ana Fernández",
+    "resena": "El servicio fue muy rápido y el cappuccino que pedí estaba delicioso, perfecto para una tarde relajada.",
+    "img": "clientes_02.png"
+  },
+  {
+    "id": 3,
+    "nombre": "María Torres",
+    "resena": "La variedad de cafés es increíble, cada vez pruebo algo nuevo y siempre quedo satisfecha.",
+    "img": "clientes_03.png"
+  },
+  {
+    "id": 4,
+    "nombre": "Javier Martínez",
+    "resena": "El café estaba bien, pero me pareció un poco caro para la cantidad que sirven.",
+    "img": "clientes_04.png"
+  },
+  {
+    "id": "5",
+    "nombre": "Luis González",
+    "resena": "Me gusta el lugar, pero la música estaba demasiado alta y fue difícil concentrarme.",
+    "img": "clientes_05.png"
+  },
+  {
+    "id": 6,
+    "nombre": "Lucía Gómez",
+    "resena": "El café estaba demasiado amargo para mi gusto y el servicio no fue muy atento.",
+    "img": "clientes_06.png"
+  },
+  {
+    "id": 7,
+    "nombre": "Miguel Álvarez",
+    "resena": "El lugar es perfecto para una reunión tranquila, el espresso que probé estaba excelente.",
+    "img": "clientes_07.png"
+  },
+  {
+    "id": 8,
+    "nombre": "Sofía Ramírez",
+    "resena": "Es mi café favorito en la ciudad. El personal siempre es amable y el café, increíble.",
+    "img": "clientes_08.png"
+  },
+  {
+    "id": 9,
+    "nombre": "Raúl Herrera",
+    "resena": "La pastelería es deliciosa, y acompañada con un buen café es lo mejor.",
+    "img": "clientes_09.png"
+  },
+  {
+    "id": 10,
+    "nombre": "Patricia Vega",
+    "resena": "He visitado varias veces y el servicio siempre es consistente y de calidad. Recomendado.",
+    "img": "clientes_10.png"
+  },
+  {
+    "id": "11",
+    "nombre": "Pipo",
+    "resena": "me gusta el café, y mucho mas",
+    "img": "clientes_02.png"
+  },
+  {
+    "id": "12",
+    "nombre": "Javier",
+    "resena": "listo para eliminar y ver que pase a eliminado true. Cambio la imagen a 3",
+    "img": "clientes_03.png",
+    "eliminado": true
+  }
+]
