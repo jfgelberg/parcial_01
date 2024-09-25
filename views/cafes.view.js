@@ -28,9 +28,8 @@ export function crearPagina(titulo, contenido) {
                     <a class="activo" href="index.html">Inicio</a>
                     <a href="nosotros.html">Nosotros</a>
                     <a href="proceso.html">Proceso</a>
-                    <a href="menu.html">Menú</a>
-                    <a href="galeria.html">Galería</a>
-                    <a href="contacto.html">Contacto</a>
+                    <a href="/cafes">Menú</a>
+                    <a href="/clientes">Clientes</a>
                 </nav>
             </div>
         </div>
@@ -197,8 +196,6 @@ export function crearListadoCafes(cafes) {
 
     return html;
 }
-
-
 
 export function crearDetalleCafe(cafe){
     let html = `

@@ -77,39 +77,20 @@ export function crearPagina(titulo, contenido) {
 
 export function crearListadoclientes(clientes) {
     let html = `
+
     <div class="d-flex align-items-end justify-content-end">
         <a href="/" class="btn btn-success text-light text-center w-25 mb-3 me-3 p-3">Volver</a>
         <a href="/clientes/clienteNuevo" class="btn btn-info text-light text-center w-25 mb-3 p-3">Nuevo Cliente</a>
     </div>
 
-    <!-- Filtros -->
-    <div class="container mb-4">
+    <div class="container mt-5">
         <div class="row">
-            <div class="col-md-6">
-                <label for="filtroNombre" class="form-label text-dark">Filtrar por nombre:</label>
-                <input type="text" id="filtroNombre" class="form-control p-3" placeholder="Buscar por nombre" />
-            </div>
-            <div class="col-md-6">
-                <label for="filtroResena" class="form-label text-dark">Filtrar por reseña:</label>
-                <input type="text" id="filtroResena" class="form-control p-3" placeholder="Buscar por reseña" />
-            </div>
-        </div>
-    </div>
-
-    <!-- Contador de clientes -->
-    <div class="container">
-        <p id="contadorClientes" class="text-dark fs-4">se encontraron: ${clientes.length} clientes</p>
-    </div>
-
-    <!-- Listado de clientes -->
-    <div class="container mt-4">
-        <div class="row" id="listaClientes">
             ${clientes.length === 0 ? `
                 <div class="col-12 text-center">
                     <p>No hay clientes</p>
                 </div>
             ` : clientes.map(comentario => `
-                <div class="col-md-4 mb-4 cliente" data-nombre="${comentario.nombre.toLowerCase()}" data-resena="${comentario.resena.toLowerCase()}">
+                <div class="col-md-4 mb-4">
                     <div class="card h-100 d-flex flex-column text-center">
                         <img src="../img/clientes/${comentario.img}" class="card-img-top imgClientes" alt="${comentario.nombre}" style="height: 200px; object-fit: cover;">
                         <div class="card-body flex-grow-1 d-flex flex-column">
@@ -128,41 +109,10 @@ export function crearListadoclientes(clientes) {
         </div>
     </div>
 
-    <script>
-        document.getElementById('filtroNombre').addEventListener('input', filtrarClientes);
-        document.getElementById('filtroResena').addEventListener('input', filtrarClientes);
-
-        function filtrarClientes() {
-            const filtroNombre = document.getElementById('filtroNombre').value.toLowerCase();
-            const filtroResena = document.getElementById('filtroResena').value.toLowerCase();
-            const clientes = document.querySelectorAll('.cliente');
-            let contador = 0; // Inicializar contador
-
-            clientes.forEach(cliente => {
-                const nombre = cliente.getAttribute('data-nombre');
-                const resena = cliente.getAttribute('data-resena');
-
-                const coincideNombre = nombre.includes(filtroNombre);
-                const coincideResena = resena.includes(filtroResena);
-
-                if (coincideNombre && coincideResena) {
-                    cliente.style.display = '';
-                    contador++; // Incrementar contador si coincide
-                } else {
-                    cliente.style.display = 'none';
-                }
-            });
-
-            // Actualizar el contador en la interfaz
-            document.getElementById('contadorClientes').innerText = ' Se encontraron: ' + contador + ' clientes';
-        }
-    </script>
-    `;
+`;
 
     return html;
 }
-
-
 
 export function crearDetalleCliente(cliente){
     let html = `
