@@ -137,7 +137,6 @@ export function crearListadoCafes(cafes) {
         cafes.forEach(producto => {
             html += `
                 <tr data-nombre="${producto.nombre.toLowerCase()}" data-tamano="${producto.tamano}" data-preparado="${producto.preparado}">
-                <div class="text-light my-3" id="resultadoFiltro"></div>
                     <td>${producto.id}</td>
                     <td><img src="../img/${ producto.img }" alt="${ producto.nombre }" style="width: 100px;"/></td>
                     <td>${producto.nombre}</td>
@@ -156,7 +155,7 @@ export function crearListadoCafes(cafes) {
     html += `
                 </tbody>
             </table>
-            
+        </div>
     `;
 
     // Funcionalidad de filtrado
@@ -171,7 +170,6 @@ export function crearListadoCafes(cafes) {
                 const filtroTamano = document.getElementById('filtroTamano').value;
                 const filtroPreparado = document.getElementById('filtroPreparado').value;
                 const filas = document.querySelectorAll('#tablaCafes tr');
-                let contador = 0;
 
                 filas.forEach(fila => {
                     const nombre = fila.getAttribute('data-nombre');
@@ -184,20 +182,16 @@ export function crearListadoCafes(cafes) {
 
                     if (coincideNombre && coincideTamano && coincidePreparado) {
                         fila.style.display = '';
-                        contador++;
                     } else {
                         fila.style.display = 'none';
                     }
                 });
-
-                document.getElementById('resultadoFiltro').textContent = \`Cafés encontrados: \${contador}\`;
             }
         </script>
     `;
 
     return html;
 }
-
 
 
 export function crearDetalleCafe(cafe){

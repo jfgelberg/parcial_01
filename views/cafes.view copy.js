@@ -79,35 +79,6 @@ export function crearListadoCafes(cafes) {
             <a href='/' class='btn btn-success text-light text-center w-25 mb-3 me-3 p-3' >volver</a>
             <a href='/cafes/cafeNuevo' class='btn btn-info text-light text-center w-25 mb-3 p-3' >Nuevo Café</a>
         </div>
-
-        <!-- Filtros -->
-        <div class="container mb-4">
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="filtroNombre" class="form-label text-light">Filtrar por nombre:</label>
-                    <input type="text" id="filtroNombre" class="form-control p-3" placeholder="Buscar por nombre" />
-                </div>
-                <div class="col-md-4">
-                    <label for="filtroTamano" class="form-label text-light ">Filtrar por tamaño:</label>
-                    <select id="filtroTamano" class="form-select p-3">
-                        <option value="">Todos los tamaños</option>
-                        <option value="chico">Chico</option>
-                        <option value="mediano">Mediano</option>
-                        <option value="grande">Grande</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <label for="filtroPreparado" class="form-label text-light ">Filtrar por preparado:</label>
-                    <select id="filtroPreparado" class="form-select p-3">
-                        <option value="">Todos los preparados</option>
-                        <option value="frio">Frío</option>
-                        <option value="caliente">Caliente</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tabla de cafés -->
         <div class='container'>
             <table class='table table-dark table-striped'>
                 <thead class="text-center">
@@ -124,7 +95,7 @@ export function crearListadoCafes(cafes) {
                         <th>Eliminar</th>
                     </tr>
                 </thead>
-                <tbody id="tablaCafes">
+                <tbody>
     `;
 
     if (cafes.length === 0) {
@@ -136,8 +107,7 @@ export function crearListadoCafes(cafes) {
     } else {
         cafes.forEach(producto => {
             html += `
-                <tr data-nombre="${producto.nombre.toLowerCase()}" data-tamano="${producto.tamano}" data-preparado="${producto.preparado}">
-                <div class="text-light my-3" id="resultadoFiltro"></div>
+                <tr>
                     <td>${producto.id}</td>
                     <td><img src="../img/${ producto.img }" alt="${ producto.nombre }" style="width: 100px;"/></td>
                     <td>${producto.nombre}</td>
@@ -152,53 +122,18 @@ export function crearListadoCafes(cafes) {
             `;
         });
     }
-
     html += `
-                </tbody>
-            </table>
-            
-    `;
-
-    // Funcionalidad de filtrado
-    html += `
-        <script>
-            document.getElementById('filtroNombre').addEventListener('input', filtrarCafes);
-            document.getElementById('filtroTamano').addEventListener('change', filtrarCafes);
-            document.getElementById('filtroPreparado').addEventListener('change', filtrarCafes);
-
-            function filtrarCafes() {
-                const filtroNombre = document.getElementById('filtroNombre').value.toLowerCase();
-                const filtroTamano = document.getElementById('filtroTamano').value;
-                const filtroPreparado = document.getElementById('filtroPreparado').value;
-                const filas = document.querySelectorAll('#tablaCafes tr');
-                let contador = 0;
-
-                filas.forEach(fila => {
-                    const nombre = fila.getAttribute('data-nombre');
-                    const tamano = fila.getAttribute('data-tamano');
-                    const preparado = fila.getAttribute('data-preparado');
-
-                    const coincideNombre = nombre.includes(filtroNombre);
-                    const coincideTamano = !filtroTamano || tamano === filtroTamano;
-                    const coincidePreparado = !filtroPreparado || preparado === filtroPreparado;
-
-                    if (coincideNombre && coincideTamano && coincidePreparado) {
-                        fila.style.display = '';
-                        contador++;
-                    } else {
-                        fila.style.display = 'none';
-                    }
-                });
-
-                document.getElementById('resultadoFiltro').textContent = \`Cafés encontrados: \${contador}\`;
-            }
-        </script>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     `;
 
     return html;
 }
-
-
 
 export function crearDetalleCafe(cafe){
     let html = `
