@@ -137,16 +137,16 @@ export function crearListadoCafes(cafes) {
             html += `
                 <tr data-nombre="${producto.nombre.toLowerCase()}" data-tamano="${producto.tamano}" data-preparado="${producto.preparado}">
                 <div class="text-light my-3" id="resultadoFiltro"></div>
-                    <td>${producto.id}</td>
+                    <td>${producto._id}</td>
                     <td><img src="../img/${ producto.img }" alt="${ producto.nombre }" style="width: 100px;"/></td>
                     <td>${producto.nombre}</td>
                     <td>${producto.descripcion}</td>
                     <td>${producto.preparado}</td>
                     <td>${producto.tamano}</td>
                     <td class="text-center" style="width: 10%">$ ${producto.precio},00</td>
-                    <td class="text-center"> <a href='/cafes/${producto.id}' class='btn btn-sm btn-info p-2 m-2' style='width: 100px'>Detalle</a> </td>
-                    <td class="text-center"> <a href='/cafes/modificar/${producto.id}' class='btn btn-sm btn-primary p-2 m-2' style='width: 100px'>Modificar</a> </td>
-                    <td class="text-center"> <a href='/cafes/eliminar/${producto.id}' class='btn btn-sm btn-danger p-2 m-2 borrar' style='width: 100px'>X</a> </td>
+                    <td class="text-center"> <a href='/cafes/${producto._id}' class='btn btn-sm btn-info p-2 m-2' style='width: 100px'>Detalle</a> </td>
+                    <td class="text-center"> <a href='/cafes/modificar/${producto._id}' class='btn btn-sm btn-primary p-2 m-2' style='width: 100px'>Modificar</a> </td>
+                    <td class="text-center"> <a href='/cafes/eliminar/${producto._id}' class='btn btn-sm btn-danger p-2 m-2 borrar' style='width: 100px'>X</a> </td>
                 </tr>
             `;
         });
@@ -222,13 +222,13 @@ export function crearDetalleCafe(cafe){
                   </thead>
                   <tbody>
                     <tr>
-                      <td>${ cafe.id }</td>
+                      <td>${ cafe._id }</td>
                       <td><img src="/img/${ cafe.img }" alt="imagen de ${ cafe.nombre }" style="width: 100px;"/></td>
                       <td>${ cafe.nombre }</td>
                       <td>${ cafe.descripcion }</td>
                       <td>${ cafe.preparado }</td>
                       <td>${ cafe.tamano }</td>
-                      <td>$ ${ cafe.precio },00</td>
+                      <td>${cafe.precio}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -297,7 +297,7 @@ export function modificarForm(cafe){
     let html = `
         <div class="container mt-5">
     <h2 class='text-center text-light'>Modificar el café</h2>
-    <form action='/cafes/modificar/${cafe.id}' method='POST' class='w-50 d-block m-auto mb-5'>
+    <form action='/cafes/modificar/${cafe._id}' method='POST' class='w-50 d-block m-auto mb-5'>
         <div class="mb-3">
             <label for="nombre" class="form-label text-light">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre" value="${cafe.nombre}" required>
@@ -349,15 +349,15 @@ export function modificarForm(cafe){
 export function eliminarForm(cafe){
     let html = `
      <div class="container mt-5">
-        <h2 class='text-center'>Usted va a eliminar esta Película</h2>
-            <form action='/cafes/eliminar/${cafe.id}' method='post' class='w-50 d-block m-auto mb-5'>
+        <h2 class='text-center'>Usted va a eliminar este cafe</h2>
+            <form action='/cafes/eliminar/${cafe._id}' method='post' class='w-50 d-block m-auto mb-5'>
                 <div class="card bg-danger border border-1 mb-3">
-                    <h2 class='text-center text-light'>Se eliminará el siguiente café</h2>
+                    <h3 class='text-center text-light'>Se eliminará el siguiente café</h3>
                      <div class="m-3">
-                        <input type='text' name='descripcion' value="ID: ${cafe.id}" disabled>
+                        <input type='text' name='descripcion' class="w-50" value="ID: ${cafe._id}" disabled>
                     </div>
                     <div class="m-3">
-                        <input type='text' name='nombre' value="cafe: ${cafe.nombre}" disabled>
+                        <input type='text' name='nombre' class="w-50" value="cafe: ${cafe.nombre}" disabled>
                     </div>
                 </div>
                 <div class="mb-3 d-flex gap-2">

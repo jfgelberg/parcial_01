@@ -35,7 +35,7 @@ const agregarCliente = (req, res) => {
          <div class="card w-50 m-auto bg-dark text-light border border-none">
              <div class="card-body bg-dark text-light">
              <ul>
-                <li class="tablaAgregado">ID: ${cliente.id}</li>
+                <li class="tablaAgregado">ID: ${cliente._id}</li>
                 <li class="tablaAgregado">Nombre: ${cliente.nombre}</li>
                 <li class="tablaAgregado">Descripción: ${cliente.resena}</li>
                 <li class="tablaAgregado">Preparado: ${cliente.img}</li>
@@ -69,7 +69,6 @@ export const modificarCliente = (req, res) => {
                <div class="card w-50 m-auto bg-dark text-light border border-none">
                    <div class="card-body bg-dark text-light">
                    <ul>
-                      <li class="tablaEditado">ID: ${cliente.id}</li>
                       <li class="tablaEditado">Nombre: ${cliente.nombre}</li>
                       <li class="tablaEditado">Descripción: ${cliente.resena}</li>
                       <li class="tablaEditado">imagen: ${cliente.img}</li>

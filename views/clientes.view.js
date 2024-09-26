@@ -118,9 +118,9 @@ export function crearListadoclientes(clientes) {
                         </div>
                         <!-- Botonera al fondo del card -->
                         <div class="d-flex justify-content-center gap-2 mb-3">
-                            <a href="/clientes/${comentario.id}" class="btn btn-sm btn-info p-3 btnCard">Detalle</a>
-                            <a href="/clientes/modificar/${comentario.id}" class="btn btn-sm btn-primary p-3 btnCard">Modificar</a>
-                            <a href="/clientes/eliminar/${comentario.id}" class="btn btn-sm btn-danger p-3 btnCard">Eliminar</a>
+                            <a href="/clientes/${comentario._id}" class="btn btn-sm btn-info p-3 btnCard">Detalle</a>
+                            <a href="/clientes/modificar/${comentario._id}" class="btn btn-sm btn-primary p-3 btnCard">Modificar</a>
+                            <a href="/clientes/eliminar/${comentario._id}" class="btn btn-sm btn-danger p-3 btnCard">Eliminar</a>
                         </div>
                     </div>
                 </div>
@@ -162,8 +162,6 @@ export function crearListadoclientes(clientes) {
     return html;
 }
 
-
-
 export function crearDetalleCliente(cliente){
     let html = `
         <div class="container">
@@ -186,7 +184,7 @@ export function crearDetalleCliente(cliente){
                   </thead>
                   <tbody>
                     <tr >
-                        <td style="text-align: center; vertical-align: middle;">${ cliente.id }</td>
+                        <td style="text-align: center; vertical-align: middle;">${ cliente._id }</td>
                         <td style="width: 15%; text-align: center; vertical-align: middle;">
                             <img src="../img/clientes/${ cliente.img }" alt="imagen de ${ cliente.nombre }" />
                         </td>
@@ -243,7 +241,7 @@ export function modificarForm(cliente){
     let html = `
         <div class="container mt-5">
     <h3 class='text-center text-dark'>Modificar el Cliente</h3>
-    <form action='/clientes/modificar/${cliente.id}' method='POST' class='w-50 d-block m-auto mb-5'>
+    <form action='/clientes/modificar/${cliente._id}' method='POST' class='w-50 d-block m-auto mb-5'>
         <div class="mb-3">
             <label for="nombre" class="form-label text-dark">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre" value="${cliente.nombre}" required>
@@ -277,14 +275,14 @@ export function modificarForm(cliente){
 export function eliminarForm(cliente){
     let html = `
      <div class="container mt-5">
-            <form action='/clientes/eliminar/${cliente.id}' method='post' class='w-50 d-block m-auto mb-5'>
+            <form action='/clientes/eliminar/${cliente._id}' method='post' class='w-50 d-block m-auto mb-5'>
                 <div class="card bg-danger border border-1 mb-3">
                     <h3 class='text-center text-light'>Se eliminará el Cliente</h3>
                      <div class="m-3">
-                        <input type='text' name='descripcion' value="ID: ${cliente.id}" disabled>
+                        <input type='text' name='descripcion' class="w-100" value="ID: ${cliente._id}" disabled>
                     </div>
                     <div class="m-3">
-                        <input type='text' name='nombre' value="cliente: ${cliente.nombre}" disabled>
+                        <input type='text' name='nombre' class="w-100" value="cliente: ${cliente.nombre}" disabled>
                     </div>
                 </div>
                 <div class="mb-3 d-flex gap-2">

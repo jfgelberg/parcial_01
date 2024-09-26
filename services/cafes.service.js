@@ -1,84 +1,63 @@
 import { readFile, writeFile } from "fs/promises"
 import { resolve } from "path"
+import { MongoClient, ObjectId } from "mongodb"
+
+const cafesProductos = new MongoClient('mongodb://localhost:27017');
+const db = cafesProductos.db("cafes");
 
 
-function getCafes(eliminados = false){
-    return readFile(resolve("data/productos.json"), { encoding: 'utf8' })
-        .then( (cafes) => eliminados ? JSON.parse(cafes) : JSON.parse(cafes).filter( cafe => !cafe.eliminado ) )
-        .catch( () => [] )
+async function getCafes(eliminados = false) {
+    await cafesProductos.connect()
+    return db.collection("productos").find().toArray();
 }
 
-function getCafeId(id){
-    return getCafes().then( cafes => {
-        return cafes.find( cafe => cafe.id == id ) || {}
-    } )
+const getCafeId = async (id) => {
+    await cafesProductos.connect();
+    
+    // Validar que el ID tenga un formato de ObjectId válido (24 caracteres hexadecimales)
+    if (!ObjectId.isValid(id)) {
+        throw new Error("El ID proporcionado no es válido.");
+    }
+
+    const cafe = await db.collection("productos").findOne({ _id: new ObjectId(id) });
+    if (!cafe) {
+        throw new Error("No se encontró el café con el ID proporcionado.");
+    }
+    return cafe;
+};
+
+async function agregarCafe(cafe) {
+    await cafesProductos.connect()
+    await db.collection("productos").insertOne(cafe)
+    return cafe
 }
 
-function agregarCafe(cafe){
-    return getCafes().then( async cafes => {
-        const nuevoCafe = {
-            id: cafes.length + 1,  // Generar un nuevo ID
-            nombre: cafe.nombre,
-            descripcion: cafe.descripcion,
-            preparado: cafe.preparado,
-            tamano: cafe.tamano,
-            img: cafe.img,
-            precio: cafe.precio
-        }
-        cafes.push(nuevoCafe)
-        await writeFile("./data/productos.json", JSON.stringify(cafes) )
-        return nuevoCafe
-    })
+
+async function eliminarCafe(id) {
+    await cafesProductos.connect()
+    await db.collection("productos").deleteOne({ _id: new ObjectId(id) })
+    return id
 }
 
+const modificarCafe = async (id, cafeActualizado) => {
+    await cafesProductos.connect(); 
 
-function eliminarCafe(id){
-    return getCafes(true)
-        .then( async cafes => {
+   // Reemplazar el documento existente con el actualizado
+    const resultado = await db.collection("productos").replaceOne(
+        { _id: ObjectId.createFromHexString(id) },  // Filtro
+        cafeActualizado  // Nuevo documento
+    );
 
-            const cafesActualizadas = cafes.map( cafe =>  {
-                if( cafe.id == id ) {
-                    return {
-                        ...cafe,
-                        eliminado: true
-                    }
-                }else{
-                    return cafe
-                } 
-            } )  
-
-            await writeFile("./data/productos.json", JSON.stringify(cafesActualizadas))
-            return id
-        } )
-}
-
-const modificarCafe = (id, cafeActualizado) => {
-    return getCafes(true)
-        .then( async cafes => {
-            let cafeActualiza = null
-            const cafesActualizados = cafes.map( cafe => {
-                if( cafe.id == id ){
-                    cafeActualiza = {
-                        id: id,
-                        ...cafeActualizado
-                    }
-                    return cafeActualiza
-                }else{
-                    return cafe
-                }
-            } )
-            await writeFile("./data/productos.json", JSON.stringify(cafesActualizados))
-            return cafeActualiza
-        } )
+    return cafeActualizado;
 }
 
 
 const actualizarCafe = (id, cafeActualizado) => {
     return getCafes(true) //el true, es para que me traiga las cafes eliminadas
-        .then( async cafes => {
+        .then(async cafes => {
             let cafeActualiza = null
-            const cafesActualizadas = cafes.map( cafe => {
-                if( cafe.id == id ){
+            const cafesActualizadas = cafes.map(cafe => {
+                if (cafe.id == id) {
                     cafeActualiza = {
                         id: id,
                         "nombre": cafeActualizado.nombre ? cafeActualizado.nombre : cafe.nombre,
@@ -89,13 +68,13 @@ const actualizarCafe = (id, cafeActualizado) => {
                         "precio": cafeActualizado.precio ? cafeActualizado.precio : cafe.precio,
                     }
                     return cafeActualiza
-                }else{
+                } else {
                     return cafe
                 }
-            } )
+            })
             await writeFile("./data/productos.json", JSON.stringify(cafesActualizados))
             return cafeActualiza
-        } )
+        })
 }
 
 export {

@@ -66,13 +66,13 @@ Crear un API que me permita hacer lo siguiente:
 - Las secciones pueden ser por ejemplo:
     
     
-    | Seccion | Slug |
-    | --- | --- |
-    | Mobile | mobile |
-    | LandingPage | landing |
-    | Web App | webapp |
-    | e-Commerce | ecommerce |
-    | Games | game |
+    | Seccion     | Slug      |
+    | ----------- | ----------| 
+    | Mobile      | mobile    |
+    | LandingPage | landing   |
+    | Web App     | webapp    |
+    | e-Commerce  | ecommerce |
+    | Games       | game      |
 - Pueden realizar todas las modificaciones necesarias en la base de datos para modelar los cambios.
 - Se deben asegurar que los campos enviados desde el cliente sean los que necesite el sistema.
 - Se evaluara:
