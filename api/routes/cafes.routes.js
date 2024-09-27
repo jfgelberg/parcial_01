@@ -4,6 +4,7 @@ import * as controller from "../controllers/cafes.controller.js"; // viene de ap
 const route = Router();
 
 route.get("/cafes", controller.getCafes );
+route.get("/cafes/:id", controller.getCafeId );
 route.post("/cafes", controller.agregarCafe );
 route.put("/cafes/:id", controller.reemplazarCafe );  
 route.patch("/cafes/:id", controller.actualizarCafe );  

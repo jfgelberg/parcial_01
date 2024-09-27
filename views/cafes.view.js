@@ -330,6 +330,8 @@ export function modificarForm(cafe){
                 <option value="cafe_01.jpg" ${cafe.img === "cafe_01.jpg" ? "selected" : ""}>cafe_01.jpg</option>
                 <option value="cafe_02.jpg" ${cafe.img === "cafe_02.jpg" ? "selected" : ""}>cafe_02.jpg</option>
                 <option value="cafe_03.jpg" ${cafe.img === "cafe_03.jpg" ? "selected" : ""}>cafe_03.jpg</option>
+                <option value="cafe_04.jpg" ${cafe.img === "cafe_04.jpg" ? "selected" : ""}>cafe_04.jpg</option>
+                <option value="cafe_05.jpg" ${cafe.img === "cafe_05.jpg" ? "selected" : ""}>cafe_05.jpg</option>
             </select>
         </div>
         <div class="mb-3">

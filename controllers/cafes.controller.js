@@ -2,6 +2,7 @@ import * as cafeService from "../services/cafes.service.js"
 import * as cafeView from "../views/cafes.view.js"
 import { ObjectId } from 'mongodb';
 
+
 //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 // *-*-*-*-*-* Detalle del producto *-*-*-*-*-*
 //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*

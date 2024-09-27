@@ -6,6 +6,12 @@ function getCafes(req, res) {
     .then((cafes) => res.status(200).json(cafes))
 }
 
+function getCafeId(req, res) {
+  const id = req.params.id
+  service.getCafeId(id)
+    .then((cafe) => res.status(200).json(cafe))
+}
+
 function agregarCafe(req, res) {
   service.agregarCafe(req.body)
     .then((cafe) => res.status(201).json(cafe))
@@ -38,6 +44,7 @@ function borrarCafe(req, res) {
 
 export {
   getCafes,
+  getCafeId,
   agregarCafe,
   reemplazarCafe,
   actualizarCafe,

@@ -6,6 +6,12 @@ function getClientes(req, res) {
     .then((clientes) => res.status(200).json(clientes))
 }
 
+function getClienteId(req, res) {
+  const id = req.params.id
+  service.getClienteId(id)
+    .then((cliente) => res.status(200).json(cliente))
+}
+
 function agregarCliente(req, res) {
   service.agregarCliente(req.body)
     .then((cliente) => res.status(201).json(cliente))
@@ -38,6 +44,7 @@ function borrarCliente(req, res) {
 
 export {
   getClientes,
+  getClienteId,
   agregarCliente,
   reemplazarCliente,
   actualizarCliente,

@@ -4,6 +4,7 @@ import * as controller from "../controllers/clientes.controller.js"; // viene de
 const route = Router();
 
 route.get("/clientes", controller.getClientes );
+route.get("/clientes/:id", controller.getClienteId );
 route.post("/clientes", controller.agregarCliente );
 route.put("/clientes/:id", controller.reemplazarCliente );  
 route.patch("/clientes/:id", controller.actualizarCliente );  

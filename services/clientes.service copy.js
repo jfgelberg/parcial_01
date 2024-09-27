@@ -12,7 +12,7 @@ const db = clientesComentarios.db("cafes");
 // }
 
 async function getClientes(eliminados = false) {
-    await clientesProductos.connect()
+    await clientesComentarios.connect()
     return db.collection("comentarios").find().toArray();
 }
 
