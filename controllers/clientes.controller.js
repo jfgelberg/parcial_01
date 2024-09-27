@@ -65,7 +65,7 @@ export const modificarCliente = (req, res) => {
     clienteService.modificarCliente(idCliente, req.body)
         .then( ( cliente ) => res.send( clienteView.crearPagina("Editar un cliente ", `      
             <div class="container mt-5 ">
-               <h3 class='text-center'>Se editó el cliente con exito! </h3>
+               <h3 class='text-center'>Se editó con exito! </h3>
                <div class="card w-50 m-auto bg-dark text-light border border-none">
                    <div class="card-body bg-dark text-light">
                    <ul>

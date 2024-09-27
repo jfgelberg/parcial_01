@@ -167,7 +167,6 @@ export function crearDetalleCliente(cliente){
         <div class="container">
         <div class="row">
           <div class="col-12">
-            <h1 class='m-5 text-dark text-center'>Comentarios del Cliente</h1>
             <div class='container'>
               <div class='d-flex align-items-end justify-content-end'>
                 <a class='btnMenu' href='/clientes'>Atrás</a>
@@ -240,7 +239,7 @@ export function crearNuevoCliente(){
 export function modificarForm(cliente){
     let html = `
         <div class="container mt-5">
-    <h3 class='text-center text-dark'>Modificar el Cliente</h3>
+    <h3 class='text-center text-dark'>Modificar Datos</h3>
     <form action='/clientes/modificar/${cliente._id}' method='POST' class='w-50 d-block m-auto mb-5'>
         <div class="mb-3">
             <label for="nombre" class="form-label text-dark">Nombre</label>
